@@ -61,7 +61,7 @@ p.desc{
   color: rgba(222,235,247,0.8);
 }
 .contact li a:hover{
-  color:rgba(222,235,247,1);
+  color:rgba(222,235,247,0.8);
 }
 .contact li~li {
   margin-left:1vw;
@@ -77,5 +77,11 @@ p.desc{
   top:-110%;
   transform:rotate(20deg);
   transform-origin: 0 100%;
+}
+.blurBottom{
+  left:-60%;
+  top:100%;
+  transform:rotate(20deg);
+  transform-origin: 100% 0%;
 }
 
