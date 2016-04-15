@@ -38,7 +38,7 @@ p.desc{
   position:relative;
   width:100%;
   font-size:4vw;
-  color:rgba(222,235,247,1);
+  color:rgba(222,235,247,0.8);
   font-weight: 200;
   margin-bottom:40px;
 }
