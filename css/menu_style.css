@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Quicksand);
 html {
   height: 100%;
+  overflow: scroll;
 }
 
 .menu-collapsed {
