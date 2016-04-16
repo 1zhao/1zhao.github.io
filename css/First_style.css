@@ -52,7 +52,7 @@ p.desc{
 .contact li {
   list-style-type:none;
   float:left;
-  color: rgba(231,225,239);
+  color: rgba(222,235,247,0.8);
   font-weight:100;
   font-size:17px;
 }
