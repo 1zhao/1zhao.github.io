@@ -1,6 +1,6 @@
 body {
   margin: 100px 150px 100px 80px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 #webgl {
