@@ -1,6 +1,7 @@
 body {
-  margin: 100px;
+  margin: auto;
   overflow: hidden;
+  width:200px
 }
 
 #webgl {
