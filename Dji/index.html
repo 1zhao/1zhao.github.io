@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>History of Stunting in Djibouti</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!--info icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--use a better font for this web map-->
+    <link href='http://fonts.googleapis.com/css?family=Helvetica' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/storymap.css">
+    <link rel="shortcut icon" href="img/Djibouti.ico" type="image/x-icon">
+
+    <!--add required libraries-->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/leaflet.ajax.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/storymap.js"></script>
+
+    <!-- mini globle map -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+    <script src="js/Control.GlobeMiniMap.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 main">
+
+            <section data-scene="Stunting_Wasting">
+                <ul><li>Stunting and wasting are urgent nutrition and human development problems in Djibouti.</li>
+                    <li>There has been slow progress in reducing the number of children under five who are stunted and wasted in Djibouti</li>
+                    <li>The current levels of stunting and wasting in Djibouti are 30% and 17.8%, respectively, both are above the WHO severity thresholds of 20% for stunting and 5% for wasting.</li>
+                </ul>
+                <img src="img/stunting_wasting.png" class="img-responsive" alt="responsive image" alt-text="stunting & wasting">
+                <head>
+                    <!-- Stunting and Wasting Line Chart Script -->
+                    <script src="js/LineChart.js"></script>
+                </head>
+                <body>
+                <div id="curve_chart" style="width: 500px; height: 200px"></div>
+                </body>
+            </section>
+
+            <section id="section1" data-scene="StuntingWastingByRegion">
+                <h2>Stunting vs Wasting by Region</h2>
+                <p>National map shows the distribution of stunting and Wasting by Region</p>
+                <ul><li>All the regions in Djibouti have both critical levels of stunting(ie. over 30%) and low coverage key nutrition actions</li>
+                    <li>The prevalence of stunting is higher among rural residents, compared to their unban counterparts(42.3% vs. 30.0%).</li>
+                    <li>Oback,Dikhil and Tajourah regions have the highest stunting rates at 45.9%, 44.2% and 40.8%, respectively.</li>
+                </ul>
+                <h3>National Distribution:</h3>
+                <!--<button class="btn btn-primary btn-group-xl" onclick="changeLayer(1)">Wasting</button>-->
+                <!--<button lass="btn btn-primary btn-group-xl" onclick="changeLayer(2)">Stuning</button>-->
+                    <a class="btn btn-primary btn-group-xl" id="WastingByRegion" role="button">Wasting</a>
+                    <a class="btn btn-primary btn-group-xl" id="StuntingByRegion" role="button">Stunting</a>
+            </section>
+
+            <section data-scene="StuntingReasons1">
+                <h2>What's the cause of stunting?</h2>
+                <h3>Determinat 1: Qulity/access to health services</h3>
+                <ul>
+                    <li>The Main causes of children malnutrition in Djibouti include low access to and utilization to of basic health services, high levels of food insecurity and poor environmental health(water, sanitation and hygiene).</li>
+                    <li>Only 23% of women receive four or more antenatal care visits.</li>
+                    <li>Only 54% of women are receiving any form of postnatal care.</li>
+                    <li>Children fully immnunizaed by their first birthday ranges from 70% to 80% in urban areas and from 40% to 50% in rural areas.</li>
+                </ul>
+            </section>
+
+            <section data-scene="StuntingReasons2">
+                <h2>What's the cause of stunting?</h2>
+                <h3>Determinat 2: Food Security</h3>
+                <ul>
+                    <li>Djibouti has limited arable land, low rainfall and is prone to drought which limited agriculture production,livelihoods, and agriculture production.</li>
+                    <li>Agriculture is almost nonexistent, accounting only for about 3% of GDP and 2% of employment.</li>
+                    <li>Djibouti imports 90% of the food it needs.</li>
+                    <li>Food insecurity high cross the country, 75% of the rural population food insecure and 20% in Djibouti City, which is the capital and biggest city of Djibouti.</li>
+                </ul>
+            </section>
+
+            <section data-scene="StuntingReasons3">
+                <h2>What's the cause of stunting?</h2>
+                <h3>Determinat 3: Poor Sanitation</h3>
+                <ul>
+                    <li>Countrywide challenges persist in accessing improved water resources and sanitation.</li>
+                    <li>Only 47% of the population has access to improved sanitation facilities,comparing 5% in rural areas.</li>
+                    <li>Only 65% of the rural population has access to improved water sources.</li>
+                    <li>Access to the improved sanitation facilities ranges from 60% in urban areas yo just 5% in rural areas.</li>
+                </ul>
+
+                <!-- Sanitation Bar Chart Script -->
+                <script src="js/BarChart.js"></script>
+                </head>
+                <body>
+                <div id="chart_div" style="width: 500px; height: 300px"></div>
+                </body>
+              </section>
+
+
+            <!--add a arrow for scrolling down the texts-->
+            <div class="glyphicon glyphicon-menu-down arrow-down"></div>
+        </div>
+        <!--map div-->
+        <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
+
+    </div>
+    <!--info icon-->
+    <i class="fa fa-info-circle social" style="top:50px" data-toggle="modal" data-target="#info-modal"></i>
+
+    <!--the info page-->
+    <div class="modal fade" id="info-modal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This is a Story map of Djibouti.This Project beneficiaries will consist of children under 5 and pregnant and lactating women, with a specific focus on the 1,000 Days "Window of opportunity."
+                        <br> The project will support the Government of Djibouti in combating stunting multisectorally through the adoption of a "Zero stunting" strategy.
+                        <br> The proposed project will expand the scope, scale, coverage of ongoing nutrition interventions nationwide, including at health facilities and in the communities and through behavior change communication and policy, coordination, monitoring and evaluation.
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main javascript -->
+<script type="text/javascript">
+
+
+    // function changeLayer(layerId) {
+    //     window.alert(layerId);
+    //     window.alert(document.getElementById("section1").getAttribute("data-scene"));
+    //     if(layerId === 1) {
+    //         window.alert("@1: " + layerId);
+    //         document.getElementById("section1").setAttribute("data-scene", "StuntingReasons2");
+    //         window.alert("@1: " + document.getElementById("section1").getAttribute("data-scene"));
+    //
+    //     } else if (layerId === 2) {
+    //         window.alert("@2: " +layerId);
+    //         document.getElementById("section1").setAttribute("data-scene", "WastingByRegion");
+    //         window.alert("@1: " + document.getElementById("section1").getAttribute("data-scene"));
+    //     }
+    //
+    // }
+// Create Legend Contents in html format
+    var county_legend ='<i style="background: black; opacity: 0.5"></i><p><b>Djibouti</b></p>';
+    var BuildingFootPrints_legend = '<i style="background: #080808; opacity: 0.5"></i><p><b>Buildings</b></p>';
+
+    // For each layer, the first variable is the layer, the second is the legend. The layer variable can be any kinds of layers that leaflet.js supports.
+
+    var layers = {
+        'Djibouti': [ L.geoJson.ajax('assets/Djibouti.geojson',  {
+            color: 'black',
+            weight: 2,
+            opacity: 0.3}), county_legend],
+        'Buildings': [ L.tileLayer('https://api.mapbox.com/styles/v1/lilili/cjk5pijbn6y1i2sohg33wkx32/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlsaWxpIiwiYSI6ImNqamZiczF1czA1bGIzcHAwN2J5NndyaG4ifQ.V5VP-UiOg5Uz8BQK_VqLpg', {
+            id: 'mapbox.Buildings'
+        }),BuildingFootPrints_legend]
+    };
+
+    var scenes = {
+
+
+        StuntingWastingByRegion: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['Buildings']},
+        WastingByRegion: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['Djibouti']},
+        Stunting_Wasting: {lat: 11.8251, lng: 41.93, zoom: 9, layers: [ 'Djibouti']},
+        StuntingReasons1: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['Buildings']},
+        StuntingReasons2: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['Buildings']},
+        StuntingReasons3: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['Buildings']},
+}
+
+    $('.main').storymap({
+        scenes: scenes,
+        layers: layers,
+        legend: true, // if you do not want a legend feature, you can simply not define the createLegend function.
+        createMap: function () {
+            // create a map in the "map" div, set the view to a given place and zoom
+            var map = L.map('map', {zoomControl: false, scrollWheelZoom: false});
+
+            // add an base map, which can be either OSM, mapbox, tilelayer, wmslayer or those designed by yourself.
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw', {
+                maxZoom: 18,
+                attribution: '<a href="1zhao.github.io" target="_blank">Zach Li</a>',
+                id: 'mapbox.light'
+            }).addTo(map);
+
+            L.control.scale({position: 'bottomright'}).addTo(map);
+
+
+            // create a mini globe as the overview map control.
+            var miniMap = new L.Control.GlobeMiniMap({
+                marker:'red',
+                position: 'bottomright'
+            }).addTo(map);
+            L.control.zoom({ position: 'bottomright'}).addTo(map);
+
+            return map;
+        }
+    });
+</script>
+</body>
+</html>
