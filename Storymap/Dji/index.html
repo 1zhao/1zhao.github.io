@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:left="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Djibouti Stunting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--animation-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!--use a better font for this web map-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/storymap.css">
+    <!--add favicon for the web page-->
+    <link rel="shortcut icon" href="img/Djibouti.ico" type="image/x-icon">
+    <!-- style of start backgound picture -->
+    <style>
+        .WB-logo-img {
+            background: url(img/worldbank.png) no-repeat ;
+            top: 00px;
+            left: 900px;
+            z-index: 1;
+            width: 20%;
+            height: auto;
+
+        }
+
+        .start-background-img {
+            background: url(img/Banner.jpg) no-repeat center;
+        }
+        .overview-background-img{
+            background: url(img/li.jpeg) no-repeat center fixed;
+        }
+        .desert-background-img{
+            background: url("img/desert.jpg") no-repeat center fixed;
+        }
+    </style>
+
+    <!--add required libraries-->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Line&Bar Chart-->
+    <script src="js/LineChart.js"></script>
+    <script src="js/BarChart.js"></script>
+    <script src="js/Serve_Stu.js"></script>
+    <script src="js/Serve_Was.js"></script>
+
+
+
+
+    <!--story map plugin-->
+    <script src="js/storymap.js"></script>
+
+    <!-- mini globle map -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+    <script src="js/globeminimap.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 main">
+
+            <section data-scene="cover" >
+                <div class="WB-logo-img background-fullscreen-setting"></div>
+                <div class="start-background-img background-fullscreen-setting text-responsive text-center" style="background-size: cover">
+                    <h3 style="
+                    position:relative;
+                    top: 40%;
+                    text-align: center;
+                    font-size:80px;
+                    background-color: hsla(78, 100%, 0%, 0.59);
+                    padding-top: 20px;
+                    padding-bottom: 30px;
+                    "> Djibouti Stunting <br/><p style="font-size:20px;">WorldBank Group</p></h3>
+
+                </div>
+
+            </section>
+
+            <section data-scene="overview" >
+                <div class="overview-background-img background-fullscreen-setting text-center" style="background-size: cover"></div>
+                <div class="background-fullscreen-setting text-responsive text-center">
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <h2 style="margin-left: 25%;
+                    font-size:40px;
+                    font-weight: bold;
+                    color: white;
+                    margin-right:20%;
+                    text-align: justify;">
+                        Good nutrition is critical for the growth and development of babies and children during their first 1,000 days of life – from pregnancy to a child’s second birthday.</br></br></br>
+                        During this critical time, malnutrition can cause irreversible damage to children’s brain development and their physical growth, putting them at increased risk of developing chronic illnesses later in life.
+                    </h2>
+                </div>
+            </section>
+
+            <section data-scene="Problem_Stunting">
+                <h2>Problem of Stunting</h2></br>
+
+                <p style="font-size:18px;">Stunting is a major public health problem in Djibouti.
+                    <strong>The current level of stunting in Djibouti is <font color="#D85B3C">30 percent</font></strong>, which exceeds the WHO severity thresholds of <font color="#5676B8">20 percent</font>.
+                    The main causes of stunting in Djibouti include low access to and utilization to of basic health services,
+                    high levels of food insecurity and poor environmental health (water, sanitation and hygiene). </p>
+                </br>
+                <body>
+                <div id="curve_chart" style="width: 500px; height: 380px"></div>
+                </body>
+            </section>
+
+            <section data-scene="Djibouti_Locating_Stu">
+                <h2>Stunting</h2></br>
+                <p style="font-size:18px;"><strong>All of the regions in Djibouti have critical levels of stunting</strong> (i.e. over 30 percent).
+                    The prevalence of stunting is <strong>higher among rural residents</strong>, compared to their urban counterparts (42.3% vs. 30.0%). 
+                    <strong>Obock, Dikhil and Tadjourah</strong> regions have the highest stunting rates at 45.9%, 44.2% and 40.8%, respectively.</p></br>
+                <body>
+                <div id="Serve_Stu" style="width: 500px; height: 380px"></div>
+                </body>
+            </section>
+
+            <section data-scene="Djibouti_Locating_Was">
+                <h2>Wasting</h2></br>
+                <p style="font-size:18px;"><strong>The current level of wasting in Djibouti is 17.8 percent</strong>, which exceeds the WHO severity thresholds of 5 percent. 
+                    </br></br>
+                    <strong>All regions in Djibouti have critical levels of wasting (i.e. over 10 percent). Obock, Djibouti City and Tadjourah </strong>regions have the highest wasting rates at 25.7%, 17.9% and 16.4%, respectively. </p>
+                <body>
+                <div id="Serve_Was" style="width: 500px; height: 380px"></div>
+                </body>
+
+            </section>
+
+            <section data-scene="Health_Service">
+                <h2>What's the cause of stunting?</h2>
+                <h4 style='font-weight: bolder' >Determinant 1: Quality/access to health services</h4></br>
+                <p style="font-size:18px;"><strong>Only 23% of women receive four or more antenatal care visits,</strong>
+                    and just over half (54%) of women are receiving any form of postnatal care. Children
+                    fully immunized by their first birthday ranges from 70% to 80% in urban areas and from 40% to 50% in rural areas.
+                    <img src="img/Women.png" class="img-responsive" alt="responsive image" style= "margin-left: auto;margin-right: auto;">
+
+                </p>
+            </section>
+
+            <section data-scene="Food_Security">
+                <div class="desert-background-img background-fullscreen-setting text-center" style="background-size: cover"></div>
+                <div class="background-fullscreen-setting text-responsive text-center">
+                    <div style="
+                    margin-top: 10%;
+                    margin-left: 20%;
+                    margin-right:20%;
+                    color: black;
+                    font-weight: bold;
+                    text-align: center;">
+                        <h2 style="font-size:60px;">What's the cause of stunting?</h2>
+                        <h4 style="font-size:45px;text-align: justify;">Determinant 2: Food Security</h4></br>
+                        <p style="font-size:25px;text-align: justify;">Food insecurity is a persistent problem across Djibouti. With limited arable land, low rainfall and prolonged droughts, agriculture production and livelihoods are severely affected.</p>
+                        <p style="font-size:25px;text-align: justify;">Agriculture is almost nonexistent, accounting only for about 3 percent of GDP and 2 percent of employment.</p>
+                        <p style="font-size:25px;text-align: justify;">Food insecurity high across the country, 75% of the rural population food insecure and 20% in Djibouti City.</p>
+                        <p style="font-size:25px;text-align: justify;">As a result, an alarmingly low percentage of children are consuming a minimum acceptable diet (i.e., at least four food groups and three meals per day) and getting the right nutrients to
+                            grow and thrive.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-scene="Wash">
+                <h2>What's the cause of stunting?</h2>
+                <h4 style='font-weight: bolder' >Determinant 3: Poor Sanitation</h4></br>
+                <p style="font-size:18px;">There are countrywide challenges in accessing improved water sources and sanitation.</p>
+                <p style="font-size:18px;">Only 47% of the population has access to improved sanitation facilities (5% in rural areas);
+                    and only 65% of the rural population has access to improved water sources..</p>
+                <p style="font-size:18px;">Access to improved sanitation facilities ranges from 60% in urban areas to just 5% in rural areas .</p>
+                <img src="img/water.png" class="img-responsive" alt="responsive image" alt-text="Wash">
+                <div id="Sanitation" style="width: 500px; height: 300px"></div>
+            </section>
+
+            <section data-scene="end">
+                <div class=" background-fullscreen-setting" >
+                    <div style="
+                           position: absolute;
+                           /*left: 0;*/
+                           /*right: 0;*/
+                           /*bottom: 30%;*/
+                           top: 0;
+                           left: 15%;
+                           right: 15%;
+                           /*width: 100%;*/
+                           /*height: 100%;*/">
+                        <video autoplay muted loop style=" width: 100%; overflow:hidden;z-index: -1">
+                            <source src="assets/Stunting.mp4" type="video/mp4">
+                        </video>
+
+                        <p style="
+                    /*position: fixed;*/
+                    font-size:14px;
+                    color:white;
+                    /*right:0;*/
+                    /*bottom: 0;*/
+                    text-align: justify;
+                    background-color: hsla(78, 100%, 0%, 0.59);
+                    padding-top: 10px;
+                    padding-right: 20px;
+                    padding-bottom: 20px;
+                    padding-left: 20px;">
+                            Recognizing the human and economic costs of childhood malnutrition, the World Bank has increased its investments globally to improve the nutrition and cognitive development of children in their early years.</br>
+                            In Djibouti, levels of stunting and wasting remain at critical levels despite recent efforts to address both conditions. The new World Bank project “Towards Zero Stunting in Djibouti” is a $15 million IDA financed project, approved on July 9, 2018, that will increase support to end stunting and ensure that children are given the opportunity to survive and thrive.</br>
+
+                            The project involves the implementation of an enhanced package of core nutrition interventions including: growth monitoring and promotion, micronutrient supplementation, nutrition and health interventions for women (antenatal care visits, iron/folic acid supplementation, etc.), and improved sanitation and hygiene practices, along with the use of new and innovative approaches to accelerate progress.</br>
+
+                            The primary technological innovation in this project is the use of programmatic and geospatial mapping to improve outreach to vulnerable and otherwise hard-to-reach households; assist with the tracking of children and mothers affected and at-risk of stunting, and map current and available health services. </p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        <!--map div-->
+        <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
+    </div>
+    <!--add a scrolling down arrow-->
+    <div class="animated zoomIn infinite glyphicon glyphicon-menu-down arrow-down"></div>
+
+
+
+<!-- main javascript -->
+<script type="text/javascript">
+
+    /**
+     * Created by jakob on 4/20/2017.
+     */
+        // Create Legend Contents in html format
+    var stu_was_national_legend = '<i style="background: orange; opacity: 0.5"></i><p><b>Stunting&Wasting Rate</b></p>';
+
+
+    var stu_region_legend = '<h7>Stunting Rate</h7></br></br>'+
+        '<i style="background: #b30000"></i><p><b>45% +</p>'+
+        '<i style="background: #e34a33"></i><p><b>35% - 45%</p>'+
+        '<i style="background: #fc8d59"></i><p><b>25% - 35%</p>'+
+        '<i style="background: #fdcc8a"></i><p><b>15% - 25%</p>'+
+        '<i style="background: #fef0d9"></i><p><b>0% - 15%</p>';
+
+    var was_region_legend ='<h7>Wasting Rate</h7></br></br>'+
+        '<i style="background: #e34a33"></i><p><b>25% +</p>'+
+        '<i style="background: #fc8d59"></i><p><b>16% - 25%</p>'+
+        '<i style="background: #fdcc8a"></i><p><b>10% - 16%</p>'+
+        '<i style="background: #fef0d9"></i><p><b>0% - 10%</p>';
+
+
+    var Buildings_by_distance =
+        '<h7>Distance to Health Facilities</h7></br></br>'+
+        '<i style="background: #059931; opacity: 0.9"></i><p><b>0.1km</p>'+
+        '<i style="background: #2CA01C; opacity: 0.9"></i><p><b>0.10km - 0.25m</b></p>' +
+        '<i style="background: #a3db5f; opacity: 0.9"></i><p><b>0.25km - 0.50km</b></p>' +
+        '<i style="background: #d5f582; opacity: 0.9"></i><p><b>0.50km - 0.75km</b></p>' +
+        '<i style="background: #fbfba5; opacity: 0.9"></i><p><b>0.75km - 1.00km</b></p>' +
+        '<i style="background: #edc785; opacity: 0.9"></i><p><b>1.00km - 1.25km</b></p>' +
+        '<i style="background: #f59d4b; opacity: 0.9"></i><p><b>1.25km - 3.50km</b></p>' +
+        '<i style="background: #ff1105; opacity: 0.9"></i><p><b>3.50km+</b></p>'+
+        '<i class="fa fa-map-marker"style="font-size:25px;color:#1d78c8;z-index: 1"></i><p><b>Health Facilities</b></p>';
+
+
+    var Sanitation_Coverage_legend= '<h7>Distance to Well Points</h7></br></br>'+
+        '<i style="background: #059931; opacity: 0.9"></i><p><b>0.1km</p>'+
+        '<i style="background: #2CA01C; opacity: 0.9"></i><p><b>0.10km - 0.25m</b></p>' +
+        '<i style="background: #a3db5f; opacity: 0.9"></i><p><b>0.25km - 0.50km</b></p>' +
+        '<i style="background: #d5f582; opacity: 0.9"></i><p><b>0.50km - 0.75km</b></p>' +
+        '<i style="background: #fbfba5; opacity: 0.9"></i><p><b>0.75km - 1.00km</b></p>' +
+        '<i style="background: #edc785; opacity: 0.9"></i><p><b>1.00km - 1.25km</b></p>' +
+        '<i style="background: #f59d4b; opacity: 0.9"></i><p><b>1.25km - 3.50km</b></p>' +
+        '<i style="background: #ff1105; opacity: 0.9"></i><p><b>3.50km+</b></p>'+
+        '<i class="fa fa-map-marker"style="font-size:25px;color:#1d78c8;z-index: 1"></i><p><b>Well Points</b></p>';
+
+
+
+
+
+
+
+    // stu Color&Style
+    function stu_setColor(density){
+
+        return  density > 0.45 ? '#b30000' :
+                density > 0.35 ? '#e34a33' :
+                density > 0.25 ? '#fc8d59' :
+                density > 0.15 ? '#fdcc8a' :
+                '#fef0d9';
+    }
+    function stu_style(feature) {
+        return {
+            fillColor: stu_setColor(feature.properties.stu),
+            fillOpacity: 1,
+            weight: 1,
+            opacity: 0.9,
+            color: '#ffffff',
+            dashArray: '4'
+        };
+    }
+
+    // was Color&Style
+    function was_setColor(density){
+
+        return  density > 0.25 ? '#e34a33' :
+                density > 0.16 ? '#fc8d59' :
+                density > 0.10 ? '#fdcc8a' :
+                '#fef0d9';
+    }
+    function was_style(feature) {
+        return {
+            fillColor: was_setColor(feature.properties.was),
+            fillOpacity: 1,
+            weight: 1,
+            opacity: 0.9,
+            color: '#ffffff',
+            dashArray: '4'
+        };
+    }
+
+
+    var layers = {
+
+        // Base Map Layers
+        'ESRI': [L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')],
+        'satelite': [L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGlsaWxpIiwiYSI6ImNqamZiczF1czA1bGIzcHAwN2J5NndyaG4ifQ.V5VP-UiOg5Uz8BQK_VqLpg', {
+            id: 'mapbox.satelite'
+        })],
+
+        // Data Layers
+        'HF': [L.geoJson.ajax('assets/HF.geojson', {
+            color: 'orange',
+            weight: 5
+        }), stu_was_national_legend],
+
+        'Djibouti_adm0': [L.geoJson.ajax('assets/Djibouti_adm0.geojson', {
+            color: 'red',
+            weight: 5
+        })],
+
+        'stu_region': [L.geoJson.ajax('assets/Djibouti_adm2.geojson', {
+
+            style: stu_style,
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.stu, {className: 'feature-label', permanent: false, direction: 'center'});
+            }
+        }), stu_region_legend],
+
+        'was_region': [L.geoJson.ajax('assets/Djibouti_adm2.geojson', {
+
+            style: was_style,
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip(feature.properties.was, {className: 'feature-label', permanent: false, direction: 'center'});
+            }
+        }), was_region_legend],
+
+        'Health_Facilites': [L.geoJson.ajax('assets/HF.geojson', {
+            color: 'red',
+            weight: 4
+        })],
+
+        'Buildings_by_distance': [L.tileLayer('https://api.mapbox.com/styles/v1/lilili/cjkjs92nl4xts2rpktn94y4nh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlsaWxpIiwiYSI6ImNqamZiczF1czA1bGIzcHAwN2J5NndyaG4ifQ.V5VP-UiOg5Uz8BQK_VqLpg', {
+            id: 'mapbox.Buildings_by_distance'
+        }),Buildings_by_distance],
+
+        'Wells': [L.geoJson.ajax('assets/Wells.geojson', {
+            color: 'red',
+            weight: 4
+        })],
+        'Buildings_by_distance_wells': [L.tileLayer('https://api.mapbox.com/styles/v1/lilili/cjknwptw68k582ss2xhvxswz9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGlsaWxpIiwiYSI6ImNqamZiczF1czA1bGIzcHAwN2J5NndyaG4ifQ.V5VP-UiOg5Uz8BQK_VqLpg', {
+            id: 'mapbox.Buildings_by_distance'
+        }),Sanitation_Coverage_legend]
+    };
+
+    var scenes = {
+        cover: {lat: 11.8077519, lng: 42.591565, zoom: 24, position: 'fullpage'},
+        overview: {lat: 11.8077519, lng: 42.591565, zoom: 24, position: 'fullpage'},
+        Problem_Stunting: {lat: 11.870, lng: 42.000,zoom: 9, layers: ['Djibouti_adm0']},
+        Djibouti_Locating_Stu: {lat: 11.870, lng: 42.000,zoom: 9, layers: ['stu_region']},
+        Djibouti_Locating_Was: {lat: 11.870, lng: 42.000,zoom: 9, layers: ['was_region']},
+        Health_Service: {lat: 11.5799, lng: 43.1100, zoom: 14, layers: ['ESRI','Buildings_by_distance','Health_Facilites']},
+        Food_Security: {lat: 11.8077519, lng: 42.591565, zoom: 24, position: 'fullpage'},
+        Wash: {lat: 11.4900, lng: 43.000, zoom: 12.3,layers: ['ESRI','Buildings_by_distance_wells','Wells']},
+        end: {lat: 11.8077519, lng: 42.591565, zoom: 24,position: 'fullpage'}
+    };
+
+    $('.main').storymap({
+        scenes: scenes,
+        layers: layers,
+        legend: true, // if you do not want a legend feature, you can simply not define the createLegend function.
+        scale: false,
+        navwidget: true,
+
+        createMap: function () {
+            // create a map in the "map" div, set the view to a given place and zoom
+            var map = L.map('map', {zoomControl: false, scrollWheelZoom: false}).setView([44, -120], 7);
+
+            // add an base map, which can be either OSM, mapbox, tilelayer, wmslayer or those designed by yourself.
+            L.tileLayer('http://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png').addTo(map);
+
+            // // create a mini globe as the overview map control.
+            // var miniMap = new L.Control.GlobeMiniMap({
+            //     marker: 'red',
+            //     position: 'bottomleft'
+            // }).addTo(map);
+
+            L.control.zoom({ position: 'bottomright'}).addTo(map);
+
+            // hidden the credits, but show in the about page.
+            $(".leaflet-control-attribution").css("display", "none");
+
+            return map;
+        }
+    });
+</script>
+</body>
+</html>
